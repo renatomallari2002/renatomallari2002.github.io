@@ -24,7 +24,7 @@
   --line: rgba(227, 197, 138, 0.22);
   --line-soft: rgba(241, 236, 224, 0.10);
 
-  --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, "Times New Roman", serif;
+  --display: "Playfair Display", Georgia, "Times New Roman", serif;
   --body: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
   color-scheme: dark;
@@ -96,14 +96,14 @@ a { color: var(--gold); }
 
 .nav {
   display: none;
-  gap: 30px;
+  gap: 26px;
 }
 
 .nav a {
   color: var(--mute);
   text-decoration: none;
   font-weight: 500;
-  font-size: .95rem;
+  font-size: .92rem;
   transition: color .2s ease;
 }
 
@@ -686,7 +686,94 @@ details[open] .chev {
   font-weight: 500;
 }
 
-/* Samples */
+/* My Work */
+.work-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 44px;
+}
+
+@media (min-width: 760px) {
+  .work-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.work-card {
+  width: 100%;
+  text-align: left;
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid var(--line-soft);
+  border-radius: 18px;
+  padding: 24px;
+  cursor: pointer;
+  transition: border-color .2s ease, transform .2s ease, background .2s ease;
+}
+
+.work-card:hover {
+  border-color: var(--line);
+  transform: translateY(-2px);
+}
+
+.work-card[aria-selected="true"] {
+  border-color: var(--gold);
+  background: linear-gradient(165deg, rgba(227,197,138,.10), rgba(227,197,138,.02));
+}
+
+.work-type {
+  color: var(--gold);
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.work-card h3 {
+  margin-top: 8px;
+  font-size: 1.55rem;
+  line-height: 1.15;
+}
+
+.work-card p {
+  margin-top: 8px;
+  color: var(--mute);
+  font-size: .95rem;
+  font-weight: 300;
+}
+
+.work-display {
+  margin-top: 22px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: clamp(24px, 4vw, 40px);
+}
+
+.work-display h3 {
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  line-height: 1.15;
+}
+
+.work-display h4 {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: .98rem;
+  color: var(--gold);
+  margin: 24px 0 5px;
+}
+
+.work-display p {
+  color: var(--ink);
+  font-weight: 300;
+}
+
+.work-link {
+  display: inline-flex;
+  margin-top: 24px;
+}
+
+/* Workflow Samples */
 .cases {
   display: grid;
   gap: 24px;
@@ -944,7 +1031,11 @@ footer .wrap {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  * { transition: none !important; }
+
+  * {
+    transition: none !important;
+  }
+
   .q-row[data-status="working"] .q-bar {
     animation-duration: .3s;
   }
@@ -996,7 +1087,8 @@ footer .wrap {
   <nav class="nav" aria-label="Sections">
     <a href="#about">About</a>
     <a href="#services">Services</a>
-    <a href="#samples">Work Samples</a>
+    <a href="#my-work">My Work</a>
+    <a href="#samples">Workflows</a>
     <a href="#resume">Resume</a>
   </nav>
 
@@ -1145,12 +1237,38 @@ footer .wrap {
       </h2>
 
       <p class="intro">
-        Practical executive and administrative support to keep your day organized and your priorities moving.
+        Practical executive, administrative, and basic website support to keep your day organized and your priorities moving.
       </p>
 
     </div>
 
     <div class="services" id="service-list"></div>
+
+  </div>
+
+</section>
+
+<hr class="rule">
+
+<section id="my-work" aria-labelledby="my-work-title">
+
+  <div class="wrap">
+
+    <div class="head">
+
+      <h2 class="title" id="my-work-title">
+        My Work
+      </h2>
+
+      <p class="intro">
+        Personal and practice projects showing the skills and tools I use as a Virtual Assistant.
+      </p>
+
+    </div>
+
+    <div class="work-grid" id="work-list"></div>
+
+    <div class="work-display" id="work-display" aria-live="polite"></div>
 
   </div>
 
@@ -1241,7 +1359,7 @@ footer .wrap {
         <h4>Summary</h4>
 
         <p>
-          Detail-oriented professional with 3+ years of experience across administrative support, customer service, e-commerce, data management, and research. Experienced in organizing information, coordinating tasks, maintaining accurate records, supporting schedules, and handling day-to-day business operations remotely.
+          Detail-oriented professional with 3+ years of experience across administrative support, customer service, e-commerce, data management, research, and basic website setup. Experienced in organizing information, coordinating tasks, supporting schedules, maintaining accurate records, and handling day-to-day business operations remotely.
         </p>
 
         <h4>Core Skills</h4>
@@ -1259,6 +1377,8 @@ footer .wrap {
           <li>Canva</li>
           <li>CapCut</li>
           <li>Meta Business Suite</li>
+          <li>HTML / CSS / JavaScript</li>
+          <li>GitHub Pages</li>
         </ul>
 
         <h4>Background</h4>
@@ -1387,17 +1507,14 @@ footer .wrap {
           "Calendar & scheduling",
           "Managing appointments, meetings, reminders, and schedule changes."
         ],
-
         [
           "Email & inbox support",
           "Organizing messages, tracking follow-ups, and keeping communication structured."
         ],
-
         [
           "Document preparation",
           "Creating, formatting, organizing, and maintaining business documents."
         ],
-
         [
           "Task coordination",
           "Tracking priorities, deadlines, recurring tasks, and follow-ups."
@@ -1422,17 +1539,14 @@ footer .wrap {
           "Online research",
           "Finding, comparing, and organizing relevant information from reliable sources."
         ],
-
         [
           "Data entry",
           "Accurate data input, cleanup, organization, and maintenance."
         ],
-
         [
           "Spreadsheets & reports",
           "Organizing information and preparing clear, easy-to-review reports."
         ],
-
         [
           "Information organization",
           "Structuring files, notes, lists, and records for easier access and follow-up."
@@ -1456,17 +1570,14 @@ footer .wrap {
           "Customer communication",
           "Responding clearly, professionally, and with attention to the customer's concern."
         ],
-
         [
           "Client communication",
           "Keeping communication organized and making sure important details are understood."
         ],
-
         [
           "Follow-ups",
           "Tracking requests and making sure important conversations don't get forgotten."
         ],
-
         [
           "Information handling",
           "Organizing customer details and keeping records accurate."
@@ -1490,17 +1601,14 @@ footer .wrap {
           "Product information",
           "Organizing product details, listings, and supporting information."
         ],
-
         [
           "Operational data",
           "Maintaining records and handling repetitive, high-volume information tasks."
         ],
-
         [
           "Research",
           "Gathering information to support products, processes, and business decisions."
         ],
-
         [
           "Process support",
           "Following established workflows and helping keep routine operations consistent."
@@ -1513,6 +1621,99 @@ footer .wrap {
         "Canva",
         "Meta Business Suite"
       ]
+    },
+
+    {
+      name: "Basic Website Setup & Management",
+      sub: "Simple website setup, customization, content organization, and maintenance.",
+
+      skills: [
+        [
+          "Basic website creation",
+          "Creating simple responsive websites using HTML, CSS, and basic JavaScript."
+        ],
+        [
+          "Website customization",
+          "Updating text, layouts, sections, buttons, links, and basic visual elements."
+        ],
+        [
+          "Content organization",
+          "Organizing website information so visitors can easily find important details."
+        ],
+        [
+          "Website maintenance",
+          "Making basic updates, checking links, and keeping website content current."
+        ]
+      ],
+
+      tools: [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "GitHub Pages",
+        "Canva"
+      ]
+    }
+
+  ];
+
+  var WORKS = [
+
+    {
+      title: "VA Portfolio Website",
+      type: "Personal Project",
+      sub: "Website creation & management",
+
+      description:
+        "Designed and built my own Executive Virtual Assistant portfolio website to present my services, skills, workflows, resume, and contact information in one organized place.",
+
+      tools:
+        "HTML, CSS, JavaScript, GitHub Pages, Canva",
+
+      link:
+        "https://renatomallari2002.github.io"
+    },
+
+    {
+      title: "Social Media Content",
+      type: "Personal Project",
+      sub: "Canva & content creation",
+
+      description:
+        "Created social media posts using Canva with a focus on clean layouts, readable information, relevant topics, and captions designed to improve reach and engagement.",
+
+      tools:
+        "Canva, Meta Business Suite, CapCut",
+
+      link: ""
+    },
+
+    {
+      title: "Calendar & Scheduling",
+      type: "Practice Project",
+      sub: "Calendly & organization",
+
+      description:
+        "Practice workflow for organizing appointments, scheduling meetings, managing availability, and keeping calendar activities structured.",
+
+      tools:
+        "Calendly, Google Calendar, Zoom",
+
+      link: ""
+    },
+
+    {
+      title: "Data Management",
+      type: "Practice Project",
+      sub: "Spreadsheet organization",
+
+      description:
+        "Practice project focused on organizing information, maintaining accurate records, cleaning data, and preparing easy-to-review spreadsheets.",
+
+      tools:
+        "Google Sheets, Microsoft Excel, Google Drive",
+
+      link: ""
     }
 
   ];
@@ -2061,7 +2262,118 @@ footer .wrap {
   );
 
 
-  /* Samples */
+  /* My Work */
+
+  var workList =
+    $("work-list");
+
+  var workDisplay =
+    $("work-display");
+
+  var currentWork = 0;
+
+  function showWork() {
+
+    var w =
+      WORKS[currentWork];
+
+    workDisplay.innerHTML = "";
+
+    workDisplay.appendChild(
+      el("h3", "", w.title)
+    );
+
+    workDisplay.appendChild(
+      el("h4", "", w.type + " · " + w.sub)
+    );
+
+    workDisplay.appendChild(
+      el("p", "", w.description)
+    );
+
+    workDisplay.appendChild(
+      el("h4", "", "Tools")
+    );
+
+    workDisplay.appendChild(
+      el("p", "", w.tools)
+    );
+
+    if (w.link) {
+
+      var a =
+        el("a", "btn work-link", "View live website");
+
+      a.href = w.link;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+
+      workDisplay.appendChild(a);
+
+    }
+
+    workList
+      .querySelectorAll(".work-card")
+      .forEach(
+        function (card, i) {
+
+          card.setAttribute(
+            "aria-selected",
+            i === currentWork
+              ? "true"
+              : "false"
+          );
+
+        }
+      );
+
+  }
+
+  WORKS.forEach(
+    function (w, i) {
+
+      var card =
+        el("button", "work-card");
+
+      card.type = "button";
+
+      card.setAttribute(
+        "aria-selected",
+        i === 0 ? "true" : "false"
+      );
+
+      card.appendChild(
+        el("span", "work-type", w.type)
+      );
+
+      card.appendChild(
+        el("h3", "", w.title)
+      );
+
+      card.appendChild(
+        el("p", "", w.sub)
+      );
+
+      card.addEventListener(
+        "click",
+        function () {
+
+          currentWork = i;
+
+          showWork();
+
+        }
+      );
+
+      workList.appendChild(card);
+
+    }
+  );
+
+  showWork();
+
+
+  /* Workflow Samples */
 
   var tabsEl =
     $("case-tabs");
@@ -2380,7 +2692,7 @@ footer .wrap {
       '<h2>Summary</h2>' +
 
       '<p>' +
-      'Detail-oriented professional with 3+ years of experience across administrative support, customer service, e-commerce, data management, and research. Experienced in organizing information, coordinating tasks, supporting schedules, maintaining accurate records, and handling day-to-day business operations remotely.' +
+      'Detail-oriented professional with 3+ years of experience across administrative support, customer service, e-commerce, data management, research, and basic website setup. Experienced in organizing information, coordinating tasks, supporting schedules, maintaining accurate records, and handling day-to-day business operations remotely.' +
       '</p>' +
 
       '<h2>Core Skills</h2>' +
