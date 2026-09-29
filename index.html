@@ -1,269 +1,2717 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
 
-  <title>Renato Mallari | Executive Virtual Assistant</title>
+<title>Renz Mallari, Executive Virtual Assistant</title>
 
-  <meta name="description" content="Renato Mallari - Executive Virtual Assistant specializing in administrative support, calendar and email management, research, data management, customer service, and business support.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+:root {
+  --bg: #080C16;
+  --panel: #0F1626;
+  --panel-2: #151E33;
+  --ink: #F1ECE0;
+  --mute: #9AA5C0;
+  --gold: #E3C58A;
+  --gold-2: #B8974F;
+  --on-gold: #1A1406;
+  --line: rgba(227, 197, 138, 0.22);
+  --line-soft: rgba(241, 236, 224, 0.10);
 
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      color: #222;
-      background: #f7f7f7;
-    }
+  --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, "Times New Roman", serif;
+  --body: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
-    header {
-      background: #111827;
-      color: white;
-      padding: 20px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+  color-scheme: dark;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
 
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-    }
+*, *::before, *::after {
+  box-sizing: inherit;
+}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-size: 14px;
-    }
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  background: var(--bg);
+}
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 17px/1.65 var(--body);
+  overflow-x: hidden;
+}
 
-    .hero {
-      background: white;
-      padding: 100px 8%;
-      text-align: center;
-    }
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  font-weight: 500;
+  margin: 0;
+}
 
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 15px;
-      color: #111827;
-    }
+p { margin: 0; }
 
-    .hero h2 {
-      font-size: 25px;
-      font-weight: normal;
-      color: #4b5563;
-      margin-bottom: 20px;
-    }
+a { color: var(--gold); }
 
-    .hero p {
-      max-width: 700px;
-      margin: auto;
-      color: #555;
-      font-size: 17px;
-    }
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
 
-    .button {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 13px 25px;
-      background: #111827;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-    }
+.wrap {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding-left: clamp(20px, 5vw, 44px);
+  padding-right: clamp(20px, 5vw, 44px);
+}
 
-    section {
-      padding: 70px 8%;
-      max-width: 1100px;
-      margin: auto;
-    }
+/* Header */
+.top {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 22px;
+  padding-bottom: 22px;
+}
 
-    section h2 {
-      font-size: 30px;
-      margin-bottom: 25px;
-      color: #111827;
-    }
+.mark {
+  font: 500 1.4rem/1 var(--display);
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
 
-    .about {
-      background: white;
-      max-width: none;
-    }
+.nav {
+  display: none;
+  gap: 30px;
+}
 
-    .about-content {
-      max-width: 900px;
-      margin: auto;
-    }
+.nav a {
+  color: var(--mute);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: .95rem;
+  transition: color .2s ease;
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
+.nav a:hover { color: var(--gold); }
 
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 8px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-    }
+@media (min-width: 800px) {
+  .nav { display: flex; }
+}
 
-    .card h3 {
-      margin-bottom: 10px;
-      color: #111827;
-    }
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .85em 1.6em;
+  font: 600 .98rem/1.1 var(--body);
+  color: var(--on-gold);
+  background: linear-gradient(180deg, #EBD3A0, #D4B57A);
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 8px 30px -10px rgba(227,197,138,.55);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
 
-    .card p {
-      color: #555;
-      font-size: 15px;
-    }
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 34px -10px rgba(227,197,138,.7);
+}
 
-    .tools {
-      margin-top: 25px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
+.btn.ghost {
+  background: transparent;
+  color: var(--gold);
+  box-shadow: none;
+}
 
-    .tool {
-      background: #e5e7eb;
-      padding: 8px 13px;
-      border-radius: 20px;
-      font-size: 14px;
-    }
+.btn.ghost:hover {
+  background: rgba(227,197,138,.1);
+  transform: none;
+  box-shadow: none;
+}
 
-    .work {
-      background: #f3f4f6;
-      max-width: none;
-    }
+.btn.small {
+  padding: .65em 1.2em;
+  font-size: .92rem;
+}
 
-    .work-content {
-      max-width: 1100px;
-      margin: auto;
-    }
+.btn[disabled] {
+  opacity: .45;
+  cursor: not-allowed;
+  transform: none;
+}
 
-    .resume-box {
-      background: white;
-      padding: 30px;
-      border-radius: 8px;
-    }
+/* Hero */
+.hero {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(24px, 5vw, 56px) 0 clamp(72px, 10vw, 128px);
+  overflow: hidden;
+}
 
-    .resume-box h3 {
-      margin-top: 20px;
-      margin-bottom: 8px;
-    }
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(rgba(227,197,138,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(227,197,138,.07) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 35%, #000 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 35%, #000 20%, transparent 75%);
+}
 
-    .resume-box ul {
-      padding-left: 20px;
-    }
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(520px circle at var(--mx, 70%) var(--my, 30%), rgba(227,197,138,.16), transparent 60%),
+    radial-gradient(700px circle at 100% 100%, rgba(72,104,255,.10), transparent 60%);
+}
 
-    .contact {
-      text-align: center;
-      background: white;
-      max-width: none;
-    }
+.hero-grid {
+  display: grid;
+  gap: clamp(40px, 6vw, 72px);
+  align-items: center;
+  padding-top: clamp(24px, 6vw, 64px);
+}
 
-    .contact p {
-      margin: 10px 0;
-    }
+@media (min-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+}
 
-    .contact a {
-      color: #111827;
-      font-weight: bold;
-    }
+.hero h1 {
+  font-size: clamp(2.7rem, 7vw, 5rem);
+  line-height: 1.03;
+  letter-spacing: -0.012em;
+  max-width: 9.5em;
+}
 
-    footer {
-      background: #111827;
-      color: white;
-      text-align: center;
-      padding: 25px;
-      font-size: 14px;
-    }
+.eyebrow {
+  color: var(--gold);
+  font-size: .9rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
 
-    @media (max-width: 700px) {
-      header {
-        flex-direction: column;
-        gap: 12px;
-      }
+.lede {
+  margin-top: 26px;
+  max-width: 31em;
+  color: var(--mute);
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  line-height: 1.65;
+  font-weight: 300;
+}
 
-      nav a {
-        margin: 0 7px;
-      }
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
 
-      .hero h1 {
-        font-size: 36px;
-      }
+.open-note {
+  margin-top: 26px;
+  color: var(--gold);
+  font-size: .96rem;
+  font-weight: 500;
+}
 
-      .hero h2 {
-        font-size: 21px;
-      }
-    }
-  </style>
+/* Desk */
+.desk {
+  position: relative;
+  background: linear-gradient(165deg, #151E33, #0C1222);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: clamp(24px, 3.4vw, 34px);
+  box-shadow:
+    0 40px 90px -40px rgba(0,0,0,.9),
+    inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+.desk::before,
+.desk::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 0 solid var(--gold);
+  pointer-events: none;
+}
+
+.desk::before {
+  top: 10px;
+  left: 10px;
+  border-top-width: 1.5px;
+  border-left-width: 1.5px;
+  border-top-left-radius: 8px;
+}
+
+.desk::after {
+  bottom: 10px;
+  right: 10px;
+  border-bottom-width: 1.5px;
+  border-right-width: 1.5px;
+  border-bottom-right-radius: 8px;
+}
+
+.desk-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.desk h2 {
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+
+.live {
+  color: var(--gold);
+  font-size: .88rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.live i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: inline-block;
+  box-shadow: 0 0 12px var(--gold);
+}
+
+.desk .hint {
+  margin-top: 6px;
+  color: var(--mute);
+  font-size: .96rem;
+}
+
+.queue {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+}
+
+.q-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 13px 0;
+  border-top: 1px solid var(--line-soft);
+}
+
+.q-row:last-child {
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.q-name {
+  font-weight: 500;
+}
+
+.q-state {
+  flex: none;
+  font-size: .86rem;
+  font-weight: 600;
+  color: var(--mute);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.q-state svg {
+  width: 14px;
+  height: 14px;
+  display: none;
+}
+
+.q-row[data-status="working"] .q-state {
+  color: var(--gold);
+}
+
+.q-row[data-status="done"] .q-state {
+  color: var(--ink);
+}
+
+.q-row[data-status="done"] .q-state svg {
+  display: block;
+  color: var(--gold);
+}
+
+.q-row[data-status="done"] .q-name {
+  color: var(--mute);
+}
+
+.q-bar {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, var(--gold-2), var(--gold));
+  box-shadow: 0 0 10px rgba(227,197,138,.7);
+}
+
+.q-row[data-status="working"] .q-bar {
+  animation: fill 1.1s linear forwards;
+}
+
+.q-row[data-status="done"] .q-bar {
+  width: 100%;
+  opacity: .35;
+  box-shadow: none;
+}
+
+@keyframes fill {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.q-empty {
+  margin-top: 18px;
+  padding: 16px 0;
+  color: var(--mute);
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.stats {
+  display: flex;
+  gap: 22px;
+  margin-top: 14px;
+  color: var(--mute);
+  font-size: .94rem;
+}
+
+.stats b {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.assign {
+  margin-top: 20px;
+}
+
+.assign p {
+  font-weight: 600;
+  font-size: .94rem;
+  margin-bottom: 10px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  font: 500 .92rem/1 var(--body);
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .6em 1em;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+
+.chip:hover {
+  border-color: var(--gold);
+  background: rgba(227,197,138,.08);
+}
+
+.chip[aria-pressed="true"] {
+  color: var(--mute);
+  border-color: var(--line-soft);
+  cursor: default;
+  background: transparent;
+}
+
+.desk-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.link-btn {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: 600 .92rem var(--body);
+  color: var(--mute);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.link-btn:hover {
+  color: var(--gold);
+}
+
+/* Sections */
+section {
+  padding: clamp(72px, 11vw, 140px) 0;
+  position: relative;
+}
+
+.head {
+  max-width: 34em;
+}
+
+h2.title {
+  font-size: clamp(2rem, 5.2vw, 3.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.intro {
+  margin-top: 14px;
+  color: var(--mute);
+  font-weight: 300;
+  font-size: 1.08rem;
+}
+
+.rule {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 0;
+}
+
+/* About */
+.about-grid {
+  display: grid;
+  gap: 44px;
+  margin-top: 44px;
+}
+
+@media (min-width: 920px) {
+  .about-grid {
+    grid-template-columns: 1.25fr 1fr;
+    gap: 88px;
+    align-items: start;
+  }
+}
+
+.statement {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.45rem, 3vw, 2.05rem);
+  line-height: 1.35;
+  max-width: 27em;
+}
+
+.about-second {
+  margin-top: 22px;
+  color: var(--mute);
+  max-width: 32em;
+  font-weight: 300;
+}
+
+.facts {
+  margin: 0;
+}
+
+.facts div {
+  display: grid;
+  grid-template-columns: 8em 1fr;
+  gap: 14px;
+  padding: 15px 0;
+  border-top: 1px solid var(--line);
+}
+
+.facts div:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.facts dt {
+  color: var(--mute);
+  font-weight: 400;
+}
+
+.facts dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.facts dd.time {
+  color: var(--gold);
+}
+
+/* Services */
+.services {
+  margin-top: 44px;
+  border-top: 1px solid var(--line);
+}
+
+details {
+  border-bottom: 1px solid var(--line);
+}
+
+summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 28px 0;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary h3 {
+  font-size: clamp(1.5rem, 3.4vw, 2.2rem);
+  line-height: 1.15;
+  transition: color .2s ease;
+}
+
+summary:hover h3 {
+  color: var(--gold);
+}
+
+summary .sub {
+  display: block;
+  margin-top: 4px;
+  font: 300 1rem/1.5 var(--body);
+  color: var(--mute);
+}
+
+.chev {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border-right: 1.5px solid var(--gold);
+  border-bottom: 1.5px solid var(--gold);
+  transform: rotate(45deg);
+  margin-right: 8px;
+  transition: transform .25s ease;
+}
+
+details[open] .chev {
+  transform: rotate(-135deg);
+}
+
+.svc-body {
+  display: grid;
+  gap: 28px;
+  padding: 0 0 36px;
+}
+
+@media (min-width: 900px) {
+  .svc-body {
+    grid-template-columns: 1.6fr 1fr;
+    gap: 64px;
+  }
+}
+
+.svc-skills {
+  display: grid;
+  gap: 18px;
+  margin: 0;
+}
+
+@media (min-width: 620px) {
+  .svc-skills {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 32px;
+  }
+}
+
+.svc-skills dt {
+  font-weight: 600;
+}
+
+.svc-skills dd {
+  margin: 3px 0 0;
+  color: var(--mute);
+  font-weight: 300;
+  font-size: .98rem;
+  line-height: 1.55;
+}
+
+.tools-title {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.tool-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tool-chips li {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .4em .95em;
+  font-size: .92rem;
+  font-weight: 500;
+}
+
+/* Samples */
+.cases {
+  display: grid;
+  gap: 24px;
+  margin-top: 44px;
+}
+
+@media (min-width: 900px) {
+  .cases {
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 56px;
+    align-items: start;
+  }
+}
+
+.case-tabs {
+  display: grid;
+  gap: 10px;
+}
+
+.case-tab {
+  text-align: left;
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--line-soft);
+  border-radius: 14px;
+  padding: 16px 18px;
+  transition: border-color .2s ease, background .2s ease;
+}
+
+.case-tab:hover {
+  border-color: var(--line);
+}
+
+.case-tab[aria-selected="true"] {
+  border-color: var(--gold);
+  background: linear-gradient(165deg, rgba(227,197,138,.10), rgba(227,197,138,.02));
+}
+
+.case-tab strong {
+  display: block;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 1.3rem;
+  line-height: 1.2;
+}
+
+.case-tab span {
+  display: block;
+  margin-top: 3px;
+  color: var(--mute);
+  font-size: .94rem;
+  font-weight: 300;
+  line-height: 1.45;
+}
+
+.case-panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: clamp(24px, 4vw, 40px);
+  display: grid;
+  gap: 24px;
+}
+
+.case-panel h3 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  line-height: 1.15;
+}
+
+.case-panel h4 {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: .98rem;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.case-panel p {
+  color: var(--ink);
+  font-weight: 300;
+}
+
+/* Resume */
+.resume-grid {
+  display: grid;
+  gap: 36px;
+  margin-top: 44px;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .resume-grid {
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 72px;
+  }
+}
+
+.resume-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.status {
+  min-height: 1.5em;
+  margin-top: 14px;
+  color: var(--mute);
+  font-size: .95rem;
+}
+
+.resume-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: clamp(24px, 4vw, 40px);
+}
+
+.resume-card h3 {
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.resume-card .role {
+  color: var(--gold);
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.resume-card h4 {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: .98rem;
+  margin: 26px 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+
+.resume-card p,
+.resume-card li {
+  font-weight: 300;
+}
+
+.resume-card ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.resume-card li + li {
+  margin-top: 5px;
+}
+
+.resume-card li strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Contact */
+.contact {
+  border-top: 1px solid var(--line);
+  background: radial-gradient(800px circle at 0% 100%, rgba(227,197,138,.08), transparent 60%);
+}
+
+.contact-grid {
+  display: grid;
+  gap: 48px;
+  align-items: start;
+}
+
+@media (min-width: 920px) {
+  .contact-grid {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 88px;
+  }
+}
+
+.contact h2.title {
+  font-size: clamp(2.8rem, 8vw, 5.4rem);
+  line-height: 1;
+}
+
+.clock {
+  margin-top: 28px;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.form {
+  display: grid;
+  gap: 26px;
+}
+
+.field {
+  display: grid;
+  gap: 4px;
+}
+
+.field label {
+  color: var(--mute);
+  font-size: .92rem;
+  font-weight: 500;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  font: 400 1.05rem/1.5 var(--body);
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  padding: .7em 0;
+  transition: border-color .2s ease;
+}
+
+.field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-bottom-color: var(--gold);
+  box-shadow: 0 1px 0 0 var(--gold);
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.form .status {
+  margin-top: 0;
+}
+
+footer {
+  padding: 30px 0 40px;
+  color: var(--mute);
+  font-size: .92rem;
+  border-top: 1px solid var(--line-soft);
+}
+
+footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+  .q-row[data-status="working"] .q-bar {
+    animation-duration: .3s;
+  }
+}
+
+@media print {
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  body > *:not(main),
+  main > *:not(#resume) {
+    display: none !important;
+  }
+
+  #resume .resume-copy {
+    display: none;
+  }
+
+  #resume .resume-grid {
+    display: block;
+    margin: 0;
+  }
+
+  #resume {
+    padding: 0;
+  }
+
+  .resume-card {
+    background: #fff;
+    color: #000;
+    border: 0;
+    padding: 0;
+  }
+
+  .resume-card * {
+    color: #000 !important;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">Renato Mallari</div>
+<header class="wrap top">
+  <a class="mark" href="#top">Renz Mallari</a>
 
-  <nav>
+  <nav class="nav" aria-label="Sections">
     <a href="#about">About</a>
     <a href="#services">Services</a>
-    <a href="#work">Work</a>
+    <a href="#samples">Work Samples</a>
     <a href="#resume">Resume</a>
-    <a href="#contact">Contact</a>
   </nav>
+
+  <a class="btn ghost small" href="#contact">Start a project</a>
 </header>
 
-<section class="hero">
-  <h1>Executive Support, Organized.</h1>
+<main id="top">
 
-  <h2>Executive Virtual Assistant</h2>
+<section class="hero" id="hero" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
 
-  <p>
-    Hi, I'm Renato Mallari. I have 3+ years of experience across
-    administrative support, customer service, e-commerce, data management,
-    and research. I help businesses stay organized, communicate effectively,
-    and keep their day-to-day operations moving smoothly.
-  </p>
+    <div>
 
-  <a class="button" href="#contact">Let's Connect</a>
+      <p class="eyebrow">Executive Virtual Assistant</p>
+
+      <h1 id="hero-title">
+        Your business, quietly in order.
+      </h1>
+
+      <p class="lede">
+        I'm Renz Mallari, an Executive Virtual Assistant with 3+ years of experience across administrative support, customer service, e-commerce, and data management. I help manage schedules, organize information, coordinate tasks, and handle day-to-day administrative work so clients can focus on what matters most.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn" href="#contact">Start a project</a>
+        <a class="btn ghost" href="#services">View services</a>
+      </div>
+
+      <p class="open-note">
+        Open to remote opportunities and freelance projects.
+      </p>
+
+    </div>
+
+    <div class="desk" id="desk">
+
+      <div class="desk-head">
+        <h2>My VA desk</h2>
+        <span class="live"><i></i>Live demo</span>
+      </div>
+
+      <p class="hint">
+        Watch a queue get handled, then assign your own tasks.
+      </p>
+
+      <ul class="queue" id="queue" aria-live="polite"></ul>
+
+      <p class="q-empty" id="q-empty" hidden>
+        The desk is clear. Assign a task below.
+      </p>
+
+      <div class="stats">
+        <span><b id="n-done">0</b> handled</span>
+        <span><b id="n-open">0</b> in progress</span>
+      </div>
+
+      <div class="assign">
+        <p>Assign a task</p>
+        <div class="chips" id="chips"></div>
+      </div>
+
+      <div class="desk-actions">
+        <button class="btn small" type="button" id="use-list" hidden>
+          Use my list in a message
+        </button>
+
+        <button class="link-btn" type="button" id="clear">
+          Clear desk
+        </button>
+      </div>
+
+    </div>
+
+  </div>
 </section>
 
-<section id="about" class="about">
-  <div class="about-content">
-    <h2>About Me</h2>
+<hr class="rule">
 
-    <p>
-      I am a detail-oriented professional with experience handling
-      administrative tasks, customer communication, records, research,
-      reports, and operational support.
-    </p>
+<section id="about" aria-labelledby="about-title">
 
-    <br>
+  <div class="wrap">
 
-    <p>
-      As an Executive Virtual Assistant, I can support busy professionals
-      with scheduling, email and calendar organization, research,
-      documentation, data management, meeting coordination, and other
-      day-to-day administrative responsibilities.
-    </p>
+    <div class="head">
+      <h2 class="title" id="about-title">About</h2>
+    </div>
 
-    <br>
+    <div class="about-grid">
 
-    <p>
-      I value organization, accuracy, clear communication, confidentiality,
-      and
+      <div>
+
+        <p class="statement">
+          I've spent more than three years in administrative support, customer service, e-commerce, and data management. I like work with a clear finish line: an inbox that's sorted, a calendar that's organized, a spreadsheet that adds up, and tasks that are followed through.
+        </p>
+
+        <p class="about-second">
+          Working with me means clear updates, questions asked early, organized information, and a task list you can check without chasing me.
+        </p>
+
+      </div>
+
+      <dl class="facts">
+
+        <div>
+          <dt>Based in</dt>
+          <dd>Nueva Ecija, Philippines</dd>
+        </div>
+
+        <div>
+          <dt>Local time</dt>
+          <dd class="time" id="facts-time">Loading</dd>
+        </div>
+
+        <div>
+          <dt>Experience</dt>
+          <dd>3+ years</dd>
+        </div>
+
+        <div>
+          <dt>Focus</dt>
+          <dd>Executive & administrative support</dd>
+        </div>
+
+        <div>
+          <dt>Availability</dt>
+          <dd>Remote opportunities & freelance projects</dd>
+        </div>
+
+      </dl>
+
+    </div>
+
+  </div>
+
+</section>
+
+<hr class="rule">
+
+<section id="services" aria-labelledby="services-title">
+
+  <div class="wrap">
+
+    <div class="head">
+
+      <h2 class="title" id="services-title">
+        Services and tools
+      </h2>
+
+      <p class="intro">
+        Practical executive and administrative support to keep your day organized and your priorities moving.
+      </p>
+
+    </div>
+
+    <div class="services" id="service-list"></div>
+
+  </div>
+
+</section>
+
+<hr class="rule">
+
+<section id="samples" aria-labelledby="samples-title">
+
+  <div class="wrap">
+
+    <div class="head">
+
+      <h2 class="title" id="samples-title">
+        Four workflows, and how I'd run each
+      </h2>
+
+      <p class="intro">
+        Sample workflows showing how I approach common executive and administrative tasks.
+      </p>
+
+    </div>
+
+    <div class="cases">
+
+      <div
+        class="case-tabs"
+        role="tablist"
+        aria-label="Sample workflows"
+        id="case-tabs">
+      </div>
+
+      <div
+        class="case-panel"
+        role="tabpanel"
+        id="case-panel"
+        tabindex="0">
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<hr class="rule">
+
+<section id="resume" aria-labelledby="resume-title">
+
+  <div class="wrap">
+
+    <div class="head">
+      <h2 class="title" id="resume-title">Resume</h2>
+    </div>
+
+    <div class="resume-grid">
+
+      <div class="resume-copy">
+
+        <p class="intro" style="margin-top:0;">
+          A one-page summary of my experience, skills, and tools as an Executive Virtual Assistant.
+        </p>
+
+        <div class="resume-actions">
+
+          <button class="btn" type="button" id="dl-resume">
+            Download resume
+          </button>
+
+          <button class="btn ghost" type="button" id="print-resume" hidden>
+            Print resume
+          </button>
+
+        </div>
+
+        <p class="status" id="resume-status" role="status"></p>
+
+      </div>
+
+      <article class="resume-card" aria-label="Resume preview">
+
+        <h3>Renz Mallari</h3>
+
+        <p class="role">
+          Executive Virtual Assistant
+        </p>
+
+        <h4>Summary</h4>
+
+        <p>
+          Detail-oriented professional with 3+ years of experience across administrative support, customer service, e-commerce, data management, and research. Experienced in organizing information, coordinating tasks, maintaining accurate records, supporting schedules, and handling day-to-day business operations remotely.
+        </p>
+
+        <h4>Core Skills</h4>
+
+        <ul id="resume-skills"></ul>
+
+        <h4>Tools</h4>
+
+        <ul>
+          <li>Google Workspace</li>
+          <li>Microsoft Office</li>
+          <li>Asana</li>
+          <li>Calendly</li>
+          <li>Zoom</li>
+          <li>Canva</li>
+          <li>CapCut</li>
+          <li>Meta Business Suite</li>
+        </ul>
+
+        <h4>Background</h4>
+
+        <ul>
+          <li>Administrative Clerk</li>
+          <li>Pharmacy Assistant</li>
+          <li>Customer Service</li>
+          <li>E-commerce Projects / Operations</li>
+          <li>Data Management & Research</li>
+        </ul>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="contact" id="contact" aria-labelledby="contact-title">
+
+  <div class="wrap contact-grid">
+
+    <div>
+
+      <h2 class="title" id="contact-title">
+        Let's begin.
+      </h2>
+
+      <p class="intro">
+        Tell me what's piling up. I'll reply with how I'd handle it and what I'd need from you.
+      </p>
+
+      <p class="clock" id="contact-time"></p>
+
+    </div>
+
+    <div class="form" role="group" aria-label="Contact form">
+
+      <div class="field">
+        <label for="f-name">Your name</label>
+        <input type="text" id="f-name" autocomplete="name">
+      </div>
+
+      <div class="field">
+        <label for="f-email">Your email</label>
+        <input type="email" id="f-email" autocomplete="email">
+      </div>
+
+      <div class="field">
+        <label for="f-msg">
+          What do you need help with?
+        </label>
+
+        <textarea id="f-msg"></textarea>
+      </div>
+
+      <div class="form-actions">
+
+        <a class="btn" id="send" href="#contact">
+          Send by email
+        </a>
+
+        <button class="btn ghost" type="button" id="copy">
+          Copy message
+        </button>
+
+      </div>
+
+      <p class="status" id="form-status" role="status"></p>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+
+  <div class="wrap">
+
+    <span>
+      &copy; 2026 Renz Mallari
+    </span>
+
+    <a href="#top">
+      Back to top
+    </a>
+
+  </div>
+
+</footer>
+
+<script>
+(function () {
+
+  var EMAIL = "renatomallari2002@gmail.com";
+
+  var START_TASKS = [
+    "Review the inbox",
+    "Organize the calendar",
+    "Prepare meeting notes",
+    "Research a topic"
+  ];
+
+  var ASSIGN = [
+    "Review my inbox",
+    "Schedule my meetings",
+    "Research a topic",
+    "Prepare meeting notes",
+    "Update my spreadsheet",
+    "Follow up with a client"
+  ];
+
+  var SKILLS = [
+
+    {
+      name: "Executive & Administrative Support",
+      sub: "Schedules, inboxes, documents, and daily priorities.",
+
+      skills: [
+        [
+          "Calendar & scheduling",
+          "Managing appointments, meetings, reminders, and schedule changes."
+        ],
+
+        [
+          "Email & inbox support",
+          "Organizing messages, tracking follow-ups, and keeping communication structured."
+        ],
+
+        [
+          "Document preparation",
+          "Creating, formatting, organizing, and maintaining business documents."
+        ],
+
+        [
+          "Task coordination",
+          "Tracking priorities, deadlines, recurring tasks, and follow-ups."
+        ]
+      ],
+
+      tools: [
+        "Google Workspace",
+        "Microsoft Office",
+        "Asana",
+        "Calendly",
+        "Zoom"
+      ]
+    },
+
+    {
+      name: "Research & Data Management",
+      sub: "Accurate information, organized records, and clear reports.",
+
+      skills: [
+        [
+          "Online research",
+          "Finding, comparing, and organizing relevant information from reliable sources."
+        ],
+
+        [
+          "Data entry",
+          "Accurate data input, cleanup, organization, and maintenance."
+        ],
+
+        [
+          "Spreadsheets & reports",
+          "Organizing information and preparing clear, easy-to-review reports."
+        ],
+
+        [
+          "Information organization",
+          "Structuring files, notes, lists, and records for easier access and follow-up."
+        ]
+      ],
+
+      tools: [
+        "Google Sheets",
+        "Google Docs",
+        "Google Drive",
+        "Microsoft Excel"
+      ]
+    },
+
+    {
+      name: "Client & Customer Support",
+      sub: "Professional communication, follow-ups, and reliable assistance.",
+
+      skills: [
+        [
+          "Customer communication",
+          "Responding clearly, professionally, and with attention to the customer's concern."
+        ],
+
+        [
+          "Client communication",
+          "Keeping communication organized and making sure important details are understood."
+        ],
+
+        [
+          "Follow-ups",
+          "Tracking requests and making sure important conversations don't get forgotten."
+        ],
+
+        [
+          "Information handling",
+          "Organizing customer details and keeping records accurate."
+        ]
+      ],
+
+      tools: [
+        "Email",
+        "Facebook Messenger",
+        "Google Workspace",
+        "Zoom"
+      ]
+    },
+
+    {
+      name: "E-commerce & Operations",
+      sub: "Behind-the-scenes support that keeps online business tasks organized.",
+
+      skills: [
+        [
+          "Product information",
+          "Organizing product details, listings, and supporting information."
+        ],
+
+        [
+          "Operational data",
+          "Maintaining records and handling repetitive, high-volume information tasks."
+        ],
+
+        [
+          "Research",
+          "Gathering information to support products, processes, and business decisions."
+        ],
+
+        [
+          "Process support",
+          "Following established workflows and helping keep routine operations consistent."
+        ]
+      ],
+
+      tools: [
+        "Google Workspace",
+        "Microsoft Office",
+        "Canva",
+        "Meta Business Suite"
+      ]
+    }
+
+  ];
+
+  var SAMPLES = [
+
+    {
+      title: "Calendar & inbox management",
+      sub: "For busy schedules and overflowing inboxes.",
+
+      problem:
+        "Messages pile up, follow-ups get missed, and meetings can become difficult to track.",
+
+      approach:
+        "Organize the inbox, identify priorities, coordinate appointments, track follow-ups, and keep important schedule details visible.",
+
+      result:
+        "A cleaner inbox, organized calendar, and clear list of items that need attention."
+    },
+
+    {
+      title: "Research & data organization",
+      sub: "For information scattered across different sources.",
+
+      problem:
+        "Important information can be spread across websites, emails, documents, and spreadsheets.",
+
+      approach:
+        "Gather relevant information, verify details, organize the findings, clean the data, and present the results in an easy-to-review format.",
+
+      result:
+        "Organized information that is easier to understand and use."
+    },
+
+    {
+      title: "Task & project coordination",
+      sub: "For keeping priorities and deadlines visible.",
+
+      problem:
+        "Tasks can become difficult to track when multiple priorities and deadlines are happening at once.",
+
+      approach:
+        "Break work into clear tasks, identify priorities, track deadlines, update progress, and keep recurring responsibilities visible.",
+
+      result:
+        "A structured task list and clearer visibility of what is completed, pending, or next."
+    },
+
+    {
+      title: "Client support workflow",
+      sub: "For keeping communication professional and organized.",
+
+      problem:
+        "Client requests can get buried when conversations happen across different channels.",
+
+      approach:
+        "Listen carefully, clarify the request, document important details, respond professionally, and track follow-ups until the request is addressed.",
+
+      result:
+        "Clear communication, organized requests, and reliable follow-through."
+    }
+
+  ];
+
+  function $(id) {
+    return document.getElementById(id);
+  }
+
+  function el(tag, cls, text) {
+
+    var n = document.createElement(tag);
+
+    if (cls) n.className = cls;
+
+    if (text != null) n.textContent = text;
+
+    return n;
+  }
+
+  var reduce =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+
+  /* Hero spotlight */
+
+  var hero = $("hero");
+
+  if (!reduce) {
+
+    var raf = 0;
+    var px = 0;
+    var py = 0;
+
+    hero.addEventListener("pointermove", function (e) {
+
+      var r = hero.getBoundingClientRect();
+
+      px = e.clientX - r.left;
+      py = e.clientY - r.top;
+
+      if (!raf) {
+
+        raf = requestAnimationFrame(function () {
+
+          hero.style.setProperty("--mx", px + "px");
+          hero.style.setProperty("--my", py + "px");
+
+          raf = 0;
+
+        });
+
+      }
+
+    });
+
+  }
+
+
+  /* VA Desk */
+
+  var checkSvg =
+    '<svg viewBox="0 0 16 16" aria-hidden="true">' +
+    '<path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>' +
+    '</svg>';
+
+  var tasks = [];
+  var rows = {};
+  var uid = 0;
+  var running = false;
+  var gen = 0;
+
+  var queue = $("queue");
+
+  var STEP = reduce ? 320 : 1100;
+
+  var LABEL = {
+    queued: "Queued",
+    working: "Working",
+    done: "Done"
+  };
+
+  function ensureRow(t) {
+
+    if (rows[t.id]) return rows[t.id];
+
+    var li = el("li", "q-row");
+
+    li.appendChild(
+      el("span", "q-name", t.name)
+    );
+
+    var st = el("span", "q-state");
+
+    st.innerHTML =
+      checkSvg +
+      "<span></span>";
+
+    li.appendChild(st);
+
+    li.appendChild(
+      el("span", "q-bar")
+    );
+
+    queue.appendChild(li);
+
+    rows[t.id] = li;
+
+    return li;
+  }
+
+  function renderDesk() {
+
+    var done = 0;
+    var open = 0;
+    var mine = 0;
+
+    tasks.forEach(function (t) {
+
+      var li = ensureRow(t);
+
+      li.setAttribute(
+        "data-status",
+        t.status
+      );
+
+      li.querySelector(
+        ".q-state span"
+      ).textContent =
+        LABEL[t.status];
+
+      if (t.status === "done") {
+        done++;
+      } else {
+        open++;
+      }
+
+      if (t.user) mine++;
+
+    });
+
+    $("n-done").textContent = done;
+    $("n-open").textContent = open;
+
+    $("q-empty").hidden =
+      tasks.length > 0;
+
+    $("use-list").hidden =
+      mine === 0;
+
+    var chips =
+      document.querySelectorAll(".chip");
+
+    chips.forEach(function (c) {
+
+      var has = tasks.some(function (t) {
+
+        return (
+          t.user &&
+          t.name ===
+          c.getAttribute("data-name")
+        );
+
+      });
+
+      c.setAttribute(
+        "aria-pressed",
+        has ? "true" : "false"
+      );
+
+    });
+
+  }
+
+  function run() {
+
+    if (running) return;
+
+    var next = null;
+
+    for (
+      var i = 0;
+      i < tasks.length;
+      i++
+    ) {
+
+      if (
+        tasks[i].status ===
+        "queued"
+      ) {
+
+        next = tasks[i];
+
+        break;
+
+      }
+
+    }
+
+    if (!next) return;
+
+    running = true;
+
+    var g = gen;
+
+    next.status = "working";
+
+    renderDesk();
+
+    setTimeout(function () {
+
+      if (g !== gen) return;
+
+      next.status = "done";
+
+      running = false;
+
+      renderDesk();
+
+      setTimeout(
+        function () {
+
+          if (g === gen) run();
+
+        },
+        reduce ? 60 : 200
+      );
+
+    }, STEP);
+
+  }
+
+  function addTask(name, user) {
+
+    tasks.push({
+      id: ++uid,
+      name: name,
+      status: "queued",
+      user: !!user
+    });
+
+    renderDesk();
+
+    run();
+
+  }
+
+  var chipsEl = $("chips");
+
+  ASSIGN.forEach(function (name) {
+
+    var b =
+      el("button", "chip", name);
+
+    b.type = "button";
+
+    b.setAttribute(
+      "data-name",
+      name
+    );
+
+    b.setAttribute(
+      "aria-pressed",
+      "false"
+    );
+
+    b.addEventListener(
+      "click",
+      function () {
+
+        if (
+          b.getAttribute(
+            "aria-pressed"
+          ) === "true"
+        ) return;
+
+        addTask(name, true);
+
+      }
+    );
+
+    chipsEl.appendChild(b);
+
+  });
+
+  $("clear").addEventListener(
+    "click",
+    function () {
+
+      gen++;
+      running = false;
+      tasks = [];
+      rows = {};
+      queue.innerHTML = "";
+
+      renderDesk();
+
+    }
+  );
+
+  var lastScopeText = "";
+
+  var fMsg = $("f-msg");
+
+  $("use-list").addEventListener(
+    "click",
+    function () {
+
+      var mine =
+        tasks.filter(
+          function (t) {
+            return t.user;
+          }
+        );
+
+      if (!mine.length) return;
+
+      var text =
+        "I'd like help with:\n" +
+        mine.map(
+          function (t) {
+            return "- " + t.name;
+          }
+        ).join("\n") +
+        "\n\n";
+
+      var existing =
+        fMsg.value;
+
+      if (
+        lastScopeText &&
+        existing.indexOf(
+          lastScopeText
+        ) === 0
+      ) {
+
+        existing =
+          existing.slice(
+            lastScopeText.length
+          );
+
+      }
+
+      fMsg.value =
+        text + existing;
+
+      lastScopeText = text;
+
+      updateMail();
+
+      $("contact").scrollIntoView({
+        behavior:
+          reduce
+            ? "auto"
+            : "smooth",
+        block: "start"
+      });
+
+      setTimeout(
+        function () {
+
+          fMsg.focus({
+            preventScroll: true
+          });
+
+        },
+        400
+      );
+
+    }
+  );
+
+  renderDesk();
+
+  setTimeout(
+    function () {
+
+      START_TASKS.forEach(
+        function (n) {
+          addTask(n, false);
+        }
+      );
+
+    },
+    500
+  );
+
+
+  /* Services */
+
+  var sl =
+    $("service-list");
+
+  SKILLS.forEach(
+    function (c, i) {
+
+      var d =
+        el("details");
+
+      if (i === 0) {
+        d.open = true;
+      }
+
+      var sum =
+        el("summary");
+
+      var head =
+        el("div");
+
+      head.appendChild(
+        el("h3", "", c.name)
+      );
+
+      head.appendChild(
+        el("span", "sub", c.sub)
+      );
+
+      sum.appendChild(head);
+
+      sum.appendChild(
+        el("span", "chev")
+      );
+
+      d.appendChild(sum);
+
+      var body =
+        el("div", "svc-body");
+
+      var dl =
+        el("dl", "svc-skills");
+
+      c.skills.forEach(
+        function (s) {
+
+          var x =
+            el("div");
+
+          x.appendChild(
+            el("dt", "", s[0])
+          );
+
+          x.appendChild(
+            el("dd", "", s[1])
+          );
+
+          dl.appendChild(x);
+
+        }
+      );
+
+      body.appendChild(dl);
+
+      var tools =
+        el("div");
+
+      tools.appendChild(
+        el(
+          "p",
+          "tools-title",
+          "Tools"
+        )
+      );
+
+      var ul =
+        el("ul", "tool-chips");
+
+      c.tools.forEach(
+        function (t) {
+
+          ul.appendChild(
+            el("li", "", t)
+          );
+
+        }
+      );
+
+      tools.appendChild(ul);
+
+      body.appendChild(tools);
+
+      d.appendChild(body);
+
+      sl.appendChild(d);
+
+    }
+  );
+
+
+  /* Samples */
+
+  var tabsEl =
+    $("case-tabs");
+
+  var panel =
+    $("case-panel");
+
+  var cur = 0;
+
+  function showCase() {
+
+    var s =
+      SAMPLES[cur];
+
+    panel.innerHTML = "";
+
+    panel.appendChild(
+      el("h3", "", s.title)
+    );
+
+    [
+      ["The problem", s.problem],
+      ["How I'd handle it", s.approach],
+      ["What you get", s.result]
+    ].forEach(
+      function (p) {
+
+        var b =
+          el("div");
+
+        b.appendChild(
+          el("h4", "", p[0])
+        );
+
+        b.appendChild(
+          el("p", "", p[1])
+        );
+
+        panel.appendChild(b);
+
+      }
+    );
+
+    panel.setAttribute(
+      "aria-labelledby",
+      "case-tab-" + cur
+    );
+
+    tabsEl
+      .querySelectorAll(
+        ".case-tab"
+      )
+      .forEach(
+        function (t, i) {
+
+          t.setAttribute(
+            "aria-selected",
+            i === cur
+              ? "true"
+              : "false"
+          );
+
+          t.tabIndex =
+            i === cur
+              ? 0
+              : -1;
+
+        }
+      );
+
+  }
+
+  SAMPLES.forEach(
+    function (s, i) {
+
+      var b =
+        el("button", "case-tab");
+
+      b.type = "button";
+
+      b.id =
+        "case-tab-" + i;
+
+      b.setAttribute(
+        "role",
+        "tab"
+      );
+
+      b.appendChild(
+        el("strong", "", s.title)
+      );
+
+      b.appendChild(
+        el("span", "", s.sub)
+      );
+
+      b.addEventListener(
+        "click",
+        function () {
+
+          cur = i;
+
+          showCase();
+
+        }
+      );
+
+      b.addEventListener(
+        "keydown",
+        function (e) {
+
+          var d =
+            (
+              e.key === "ArrowDown" ||
+              e.key === "ArrowRight"
+            )
+              ? 1
+              : (
+                  e.key === "ArrowUp" ||
+                  e.key === "ArrowLeft"
+                )
+                  ? -1
+                  : 0;
+
+          if (!d) return;
+
+          e.preventDefault();
+
+          cur =
+            (
+              cur +
+              d +
+              SAMPLES.length
+            ) %
+            SAMPLES.length;
+
+          showCase();
+
+          tabsEl
+            .querySelectorAll(
+              ".case-tab"
+            )[cur]
+            .focus();
+
+        }
+      );
+
+      tabsEl.appendChild(b);
+
+    }
+  );
+
+  showCase();
+
+
+  /* Resume */
+
+  var rs =
+    $("resume-skills");
+
+  SKILLS.forEach(
+    function (c) {
+
+      var li =
+        el("li");
+
+      li.appendChild(
+        el(
+          "strong",
+          "",
+          c.name + ": "
+        )
+      );
+
+      li.appendChild(
+        document.createTextNode(
+          c.skills.map(
+            function (s) {
+              return s[0]
+                .toLowerCase();
+            }
+          ).join(", ") +
+          "."
+        )
+      );
+
+      rs.appendChild(li);
+
+    }
+  );
+
+  function resumeHTML() {
+
+    var skills =
+      SKILLS.map(
+        function (c) {
+
+          return (
+            "<h3>" +
+            c.name +
+            "</h3><ul>" +
+
+            c.skills.map(
+              function (s) {
+
+                return (
+                  "<li><strong>" +
+                  s[0] +
+                  ".</strong> " +
+                  s[1] +
+                  "</li>"
+                );
+
+              }
+            ).join("") +
+
+            "</ul>"
+          );
+
+        }
+      ).join("");
+
+    var seen = {};
+    var tools = [];
+
+    SKILLS.forEach(
+      function (c) {
+
+        c.tools.forEach(
+          function (t) {
+
+            if (!seen[t]) {
+
+              seen[t] = 1;
+              tools.push(t);
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+    return (
+      '<!doctype html>' +
+      '<html lang="en">' +
+      '<head>' +
+      '<meta charset="utf-8">' +
+      '<title>Renz Mallari, Resume</title>' +
+
+      '<style>' +
+
+      'body{' +
+      'font:16px/1.55 system-ui,-apple-system,Segoe UI,Arial,sans-serif;' +
+      'color:#111;' +
+      'max-width:720px;' +
+      'margin:40px auto;' +
+      'padding:0 24px' +
+      '}' +
+
+      'h1{font-size:2rem;margin:0}' +
+
+      'h2{' +
+      'font-size:1.1rem;' +
+      'margin:28px 0 8px;' +
+      'padding-bottom:4px;' +
+      'border-bottom:2px solid #111' +
+      '}' +
+
+      'h3{' +
+      'font-size:1rem;' +
+      'margin:16px 0 4px' +
+      '}' +
+
+      'ul{' +
+      'margin:0;' +
+      'padding-left:1.2em' +
+      '}' +
+
+      'li{margin:2px 0}' +
+
+      '.role{' +
+      'color:#444;' +
+      'margin:2px 0 0;' +
+      'font-weight:600' +
+      '}' +
+
+      '.meta{' +
+      'color:#444;' +
+      'margin-top:6px' +
+      '}' +
+
+      '@media print{' +
+      'body{margin:0}' +
+      '}' +
+
+      '</style>' +
+
+      '</head>' +
+
+      '<body>' +
+
+      '<h1>Renz Mallari</h1>' +
+
+      '<p class="role">' +
+      'Executive Virtual Assistant' +
+      '</p>' +
+
+      '<p class="meta">' +
+      'Nueva Ecija, Philippines' +
+      ' &middot; ' +
+      EMAIL +
+      '</p>' +
+
+      '<h2>Summary</h2>' +
+
+      '<p>' +
+      'Detail-oriented professional with 3+ years of experience across administrative support, customer service, e-commerce, data management, and research. Experienced in organizing information, coordinating tasks, supporting schedules, maintaining accurate records, and handling day-to-day business operations remotely.' +
+      '</p>' +
+
+      '<h2>Core Skills</h2>' +
+
+      skills +
+
+      '<h2>Tools</h2>' +
+
+      '<p>' +
+      tools.join(", ") +
+      '</p>' +
+
+      '<h2>Background</h2>' +
+
+      '<ul>' +
+
+      '<li>Administrative Clerk</li>' +
+      '<li>Pharmacy Assistant</li>' +
+      '<li>Customer Service</li>' +
+      '<li>E-commerce Projects / Operations</li>' +
+      '<li>Data Management & Research</li>' +
+
+      '</ul>' +
+
+      '</body>' +
+      '</html>'
+    );
+
+  }
+
+  var rStatus =
+    $("resume-status");
+
+  var printBtn =
+    $("print-resume");
+
+  $("dl-resume").addEventListener(
+    "click",
+    function () {
+
+      try {
+
+        var blob =
+          new Blob(
+            [resumeHTML()],
+            { type: "text/html" }
+          );
+
+        var url =
+          URL.createObjectURL(blob);
+
+        var a =
+          document.createElement("a");
+
+        a.href = url;
+
+        a.download =
+          "Renz-Mallari-Executive-Virtual-Assistant-Resume.html";
+
+        document.body.appendChild(a);
+
+        a.click();
+
+        a.remove();
+
+        setTimeout(
+          function () {
+
+            URL.revokeObjectURL(url);
+
+          },
+          1000
+        );
+
+        rStatus.textContent =
+          "Resume downloaded.";
+
+      } catch (e) {
+
+        rStatus.textContent =
+          "Couldn't download the file. Try Print resume instead.";
+
+        printBtn.hidden = false;
+
+      }
+
+    }
+  );
+
+  printBtn.addEventListener(
+    "click",
+    function () {
+
+      try {
+        window.print();
+      } catch (e) {}
+
+    }
+  );
+
+
+  /* Philippines time */
+
+  function phTime() {
+
+    try {
+
+      return new Intl.DateTimeFormat(
+        "en-US",
+        {
+          timeZone: "Asia/Manila",
+          weekday: "short",
+          hour: "numeric",
+          minute: "2-digit"
+        }
+      ).format(new Date());
+
+    } catch (e) {
+
+      return "";
+
+    }
+
+  }
+
+  function tick() {
+
+    var t =
+      phTime();
+
+    if (!t) return;
+
+    $("facts-time").textContent =
+      t + " (UTC+8)";
+
+    $("contact-time").textContent =
+      "It's " +
+      t +
+      " in the Philippines right now.";
+
+  }
+
+  tick();
+
+  setInterval(
+    tick,
+    30000
+  );
+
+
+  /* Contact form */
+
+  var fName =
+    $("f-name");
+
+  var fEmail =
+    $("f-email");
+
+  var fStatus =
+    $("form-status");
+
+  var send =
+    $("send");
+
+  function buildMessage() {
+
+    var lines = [
+      "Hi Renz,",
+      ""
+    ];
+
+    if (fMsg.value.trim()) {
+
+      lines.push(
+        fMsg.value.trim()
+      );
+
+      lines.push("");
+
+    }
+
+    lines.push("Thanks,");
+    lines.push(fName.value.trim());
+
+    if (fEmail.value.trim()) {
+      lines.push(
+        fEmail.value.trim()
+      );
+    }
+
+    return lines.join("\n");
+
+  }
+
+  function subject() {
+
+    return (
+      "Project inquiry" +
+      (
+        fName.value.trim()
+          ? " from " +
+            fName.value.trim()
+          : ""
+      )
+    );
+
+  }
+
+  function updateMail() {
+
+    if (EMAIL) {
+
+      send.href =
+        "mailto:" +
+        EMAIL +
+        "?subject=" +
+        encodeURIComponent(
+          subject()
+        ) +
+        "&body=" +
+        encodeURIComponent(
+          buildMessage()
+        );
+
+    }
+
+  }
+
+  [
+    fName,
+    fEmail,
+    fMsg
+  ].forEach(
+    function (f) {
+
+      f.addEventListener(
+        "input",
+        updateMail
+      );
+
+    }
+  );
+
+  send.addEventListener(
+    "click",
+    function (e) {
+
+      if (!EMAIL) {
+
+        e.preventDefault();
+
+        fStatus.textContent =
+          "Email sending isn't set up yet. Use Copy message and send it to me directly.";
+
+        return;
+
+      }
+
+      if (
+        !fName.value.trim() ||
+        !fMsg.value.trim()
+      ) {
+
+        e.preventDefault();
+
+        fStatus.textContent =
+          "Add your name and a few details first.";
+
+        return;
+
+      }
+
+      updateMail();
+
+      fStatus.textContent =
+        "Opening your email app.";
+
+    }
+  );
+
+  $("copy").addEventListener(
+    "click",
+    function () {
+
+      var text =
+        buildMessage();
+
+      function ok() {
+
+        fStatus.textContent =
+          "Message copied. Paste it into an email or chat.";
+
+      }
+
+      function fallback() {
+
+        fMsg.focus();
+
+        fStatus.textContent =
+          "Couldn't copy automatically. Select the text and copy it.";
+
+      }
+
+      try {
+
+        if (
+          navigator.clipboard &&
+          navigator.clipboard.writeText
+        ) {
+
+          navigator.clipboard
+            .writeText(text)
+            .then(ok, fallback);
+
+        } else {
+
+          fallback();
+
+        }
+
+      } catch (e) {
+
+        fallback();
+
+      }
+
+    }
+  );
+
+})();
+</script>
+
+</body>
+</html>
