@@ -73,8 +73,68 @@ body[data-page="contact"] .email{color:var(--accent2)}
 @media (pointer:coarse){.cursor-halo{display:none}}
 
 /* Personal profile additions */
-.profile-hero-card{position:relative;border:1px solid var(--line);border-radius:22px;padding:14px;background:linear-gradient(145deg,rgba(24,32,46,.92),rgba(7,10,16,.9));box-shadow:0 30px 80px rgba(0,0,0,.45);transform:translateZ(0);}
-.profile-hero-photo{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center;border-radius:15px;filter:saturate(.95) contrast(1.03);}
+.profile-hero-card{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(212,175,55,.15);
+  border-radius:22px;
+  padding:0;
+  background:#070a10;
+  box-shadow:0 30px 80px rgba(0,0,0,.5);
+}
+
+.profile-hero-photo{
+  display:block;
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  object-position:center top;
+
+  filter:
+    saturate(.85)
+    contrast(1.02)
+    brightness(.88);
+
+  border-radius:22px;
+
+  /* fade the bottom into the background */
+  -webkit-mask-image:linear-gradient(
+    to bottom,
+    black 0%,
+    black 58%,
+    rgba(0,0,0,.85) 72%,
+    rgba(0,0,0,.45) 86%,
+    transparent 100%
+  );
+
+  mask-image:linear-gradient(
+    to bottom,
+    black 0%,
+    black 58%,
+    rgba(0,0,0,.85) 72%,
+    rgba(0,0,0,.45) 86%,
+    transparent 100%
+  );
+}
+.profile-hero-card::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:45%;
+
+  background:linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(7,10,16,.35) 35%,
+    rgba(7,10,16,.85) 75%,
+    #070a10 100%
+  );
+
+  pointer-events:none;
+  z-index:2;
+}
 .profile-hero-badge{position:absolute;left:28px;bottom:28px;padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(7,10,16,.84);backdrop-filter:blur(10px);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text);}
 .profile-hero-badge i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold);margin-right:7px;}
 .profile-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:start;}
